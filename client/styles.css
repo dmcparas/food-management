@@ -1,0 +1,23 @@
+#home-body {
+        background: url("assets/54088690-organic-food-background-studio-photo-of-different-fruits-and-vegetables-on-white-wooden-table-high-r.jpg") no-repeat center center fixed;
+
+        background-repeat:no-repeat;
+       background-size:cover;-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+       width: auto;
+} 
+.home-page-login {
+        display: flex;
+        flex-direction: column;
+        height: 600px;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+      }
+
+      .btn{
+              margin: 5px;
+              width: auto;
+              border: 2px solid black !important;
+      }
