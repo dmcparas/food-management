@@ -9,23 +9,43 @@ exports.savefooddata = async function(req, res, next){
     try{
         let studentDetails = await StudentModel.findById({_id:req.body.userId}).exec();
         let studentFood = {
-        breakfast: true,
-        lunch: true,
-        dinner: true};
+        breakfast: req.body.breakfast,
+        lunch: req.body.lunch,
+        dinner: req.body.dinner};
         let result = joi.validate(studentFood, StudentFoodValidate);
         if (result.error !== null) {
             throw new Error(`Validation error occured ${result.error}`);
         }
-        studentFood.studentusn = studentDetails._id;
-        let studentFoodDetails = await new StudentFoodModel(studentFood).save();
-        let data = {"date" : "10/10/2019"}
+        let data = {"date":req.body.date};
         let foodresult = joi.validate(data, FoodDetailsValidate);
         if (foodresult.error !== null) {
             throw new Error(`Validation error occured ${foodresult.error}`);
         }
-        data.details = studentFoodDetails;
-        let foodDetials =await new FoodDetailsModel(data).save();
-        res.send(foodDetials);
+        studentFood.studentusn = studentDetails._id;
+        let studentFoodDetails = await new StudentFoodModel(studentFood).save();
+        data.details = studentFoodDetails._id;
+        let foodDetails;
+        let existingData = await FoodDetailsModel.findOne({date:req.body.date}).exec();
+        if(existingData !=null || existingData != undefined){
+            var newArr = existingData.details.concat(data.details);
+            var newData = {details:newArr};
+            var isAlreadyThere = false;
+            for(let i=0;i<existingData.details.length;i++){
+                if(existingData.details[i].studentusn == req.body.userId){
+                    isAlreadyThere = true;
+                }
+            }
+            if(!isAlreadyThere){
+                foodDetails = await FoodDetailsModel.findOneAndUpdate(
+                    { date:req.body.date },
+                    newData,
+                    { new: true }
+                  );
+            }
+        }else{
+            foodDetails = await new FoodDetailsModel(data).save();
+        }
+        res.send(foodDetails);
     } catch(err){
         next(err);
     }
@@ -33,14 +53,14 @@ exports.savefooddata = async function(req, res, next){
 
 exports.getfooddata = async function(req, res, next){
     try{
-        let foodDetails = await FoodDetailsModel.findOne({date:req.body.date}).exec();
-        let studentFoodDetailsId;
+        let foodDetails = await FoodDetailsModel.findOne({date:req.body.date}).populate("details").select("-__v").exec();
+        let studentFoodDetails;
         for(let i=0;i<foodDetails.details.length;i++){
-            if(foodDetails.details[i] == req.body.userId){
-                studentFoodDetailsId = foodDetails.details[i];
+            if(foodDetails.details[i].studentusn == req.body.userId){
+                studentFoodDetails = foodDetails.details[i];
             }
         }
-        let studentFoodDetails = await StudentFoodModel.findOne({_id:studentFoodDetailsId});
+        if(studentFoodDetails != undefined || studentFoodDetails != null)
         res.send(studentFoodDetails);
     } catch(err){
         next(err);
@@ -49,11 +69,11 @@ exports.getfooddata = async function(req, res, next){
 
 exports.updatefooddata = async function(req, res, next){
     try{
-        let foodDetails = await FoodDetailsModel.findOne({date:req.body.date}).exec();
-        let studentFoodDetailsId;
+        let foodDetails = await FoodDetailsModel.findOne({date:req.body.date}).populate("details").select("-__v").exec();
+        let studentFoodDetails;
         for(let i=0;i<foodDetails.details.length;i++){
-            if(foodDetails.details[i] == req.body.userId){
-                studentFoodDetailsId = foodDetails.details[i];
+            if(foodDetails.details[i].studentusn == req.body.userId){
+                studentFoodDetails = foodDetails.details[i];
             }
         }
         let data = {
@@ -61,12 +81,12 @@ exports.updatefooddata = async function(req, res, next){
             lunch: req.body.lunch,
             dinner: req.body.dinner
         };
-        let studentFoodDetails = await StudentFoodModel.findOneAndUpdate(
-            { _id: studentFoodDetailsId },
-            { $set: data },
+        let newStudentFoodDetails = await StudentFoodModel.findOneAndUpdate(
+            { _id: studentFoodDetails._id },
+            data,
             { new: true }
           );
-          res.send(studentFoodDetails);
+          res.send(newStudentFoodDetails);
     }catch(err){
         next(err);
     }
@@ -74,7 +94,7 @@ exports.updatefooddata = async function(req, res, next){
 
 exports.getdataforwarden = async function(req, res, next){
     try{
-        let foodDetails = await FoodDetailsModel.findOne({date:req.body.date}).exec();
+        let foodDetails = await FoodDetailsModel.find({date:req.body.date}).populate({path:"details",populate:{path:"studentusn",select: { 'name': 1,'usn':1},model:'StudentModel'}}).select("-__v").exec();
         res.send(foodDetails);
     } catch(err){
         next(err);

@@ -25,10 +25,8 @@ module.exports.WardenSignUpValidate = joi.object().keys({
     .regex(/^[a-zA-Z0-9]{3,30}$/)
     .required(),
     name: joi.string()
-    .alphanum()
-    .min(3)
-    .max(30)
-    .required(),
+    .regex(/^[a-zA-Z0-9 ]{3,30}$/)
+    .required()
 });
 
 module.exports.WardenLoginValidate = joi.object().keys({

@@ -1,12 +1,12 @@
-document.getElementById("create-account-student").onclick = function () {
-    location.href = "../pages/StudentRegistration.html";
+document.getElementById("create-account-warden").onclick = function () {
+    location.href = "../pages/WardenRegistration.html";
 };
 
-document.getElementById("login-student").onsubmit = function(evt){
-    let userName = document.getElementById("student-username").value;
+document.getElementById("warden-login").onsubmit = function(evt){
+    let userName = document.getElementById("warden-username").value;
     if(userName == "")
     alert("Please enter username");
-    let password = document.getElementById("student-password").value;
+    let password = document.getElementById("warden-password").value;
     if(password == "")
     alert("Please enter password");
     let data = {
@@ -19,7 +19,7 @@ document.getElementById("login-student").onsubmit = function(evt){
             let receivedData = JSON.parse(this.responseText);
             localStorage.setItem("userId",receivedData.userId);
             localStorage.setItem("token",receivedData.token);
-            location.href = "../pages/Menu.html";
+            location.href = "../pages/AllStudents.html";
         }
         else {
             if(this.responseText != "" && this.readyState == 4)
@@ -27,7 +27,7 @@ document.getElementById("login-student").onsubmit = function(evt){
             evt.preventDefault();
         }
     };
-    xhttp.open("POST", "http://localhost:4000/api/foodmanagement/studentlogin", true);
+    xhttp.open("POST", "http://localhost:4000/api/foodmanagement/wardenlogin", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify(data));
 }
