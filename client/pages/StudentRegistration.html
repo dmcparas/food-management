@@ -11,41 +11,45 @@
 </head>
 
 <body id="home-body">
-<h1 align="center">Create your account</h1><br>
-<h2 align="center">Continue to Off the Menu</h2>
-
-<form id="student-form" method="POST">
-        <div class="form-row">
-          <div class="form-group col-md-5">
+    <button type="button" id="home-button" class="btn btn-danger">Home</button>
+<div class="card text-center">
+    <div class="card-header">
+        Create your account
+      </div>
+      <div class="card-body">
+<form id="student-form">
+          <div class="form-group">
             <label for="inputName1">FirstName</label>
             <input type="text" class="form-control" id="inputName1" placeholder="FirstName">
           </div>
-          <div class="form-group col-md-5">
+          <div class="form-group">
             <label for="inputName2">LastName</label>
             <input type="text" class="form-control" id="inputName2" placeholder="LastName">
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group">
                 <label for="USN">USN</label>
                 <input type="text" class="form-control" id="usn" placeholder="USN">
               </div>
-        </div>
-        <div class="form-group col-md-6">
+       
+        <div class="form-group">
           <label for="userName">UserName</label>
           <input type="text" class="form-control" id="userName" placeholder="UserName">
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group">
           <label for="Password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="password">
-          <small id="PasswordHelp" class="form-text text-muted">Use 8 or more characters with a mix of letters, numbers & symbols</small>
+          <input type="password" class="form-control" id="password" placeholder="Password">
         </div>
-        
         <button type="submit" class="btn btn-primary" id="student-signup" >Sign Up</button>
       </form>
-
+      <div class="card-footer text-muted">
+          <small id="PasswordHelp" class="form-text text-muted">Use 8 or more characters with a mix of letters, numbers & symbols</small>
+      </div>
+    </div>
+</div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script src="../scripts/studentregistration.js"></script>
-      </body>   
+        <script src="../scripts/studentregistration.js"></script>  
+        <script src="../scripts/home.js"></script>
 </body>
 </html>

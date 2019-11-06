@@ -99,3 +99,9 @@ var updateFunction = function(evt){
     xhttp.setRequestHeader("x-auth",localStorage.getItem("token"));
     xhttp.send(JSON.stringify(data));
 }
+
+document.getElementById("menu-form").onsubmit = function(evt){
+    if(document.getElementById("menu-date").value == ""){
+        alert("Please select a date");
+    }
+};

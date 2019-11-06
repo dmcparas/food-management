@@ -21,7 +21,7 @@ module.exports.MessInchargeSignUpValidate = joi.object().keys({
     .max(30)
     .required(),
     password: joi.string()
-    .regex(/^[a-zA-Z0-9]{3,30}$/)
+    .regex(/^[a-zA-Z0-9]{8,30}$/)
     .required()
 });
 
@@ -32,6 +32,6 @@ module.exports.MessInchargeLoginValidate = joi.object().keys({
     .max(30)
     .required(),
     password: joi.string()
-    .regex(/^[a-zA-Z0-9]{3,30}$/)
+    .regex(/^[a-zA-Z0-9]{8,30}$/)
     .required()
 });

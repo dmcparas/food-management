@@ -13,34 +13,37 @@
 </head>
 
 <body id="home-body">
-    <h1 align="center">Student Food Details</h1><br>
-    <h2 align="center">Continue to Off the Menu</h2>
-    <form id="student-food">
-        <div>
-            <div style="display: flex;">
-                <p>Please select date:</p>
-                <input type="date" name="data-date" id="data-date">
-                <button type="button" id="log-out" class="btn btn-danger">Logout</button>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <table class="table">
+    <button type="button" id="log-out" class="btn btn-danger">Logout</button>
+    <div class="card text-center">
+        <div class="card-header">
+            Student Food Details
+        </div>
+        <div class="card-body">
+            <form id="student-food">
+
+                <div>
+                    <p>Please select date:<input type="date" name="data-date" id="data-date"></p>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <table class="table">
                     <thead class="thead-dark">
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">USN</th>
-                        <th scope="col">Breakfast</th>
-                        <th scope="col">Lunch</th>
-                        <th scope="col">Dinner</th>
-                      </tr>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">USN</th>
+                            <th scope="col">Breakfast</th>
+                            <th scope="col">Lunch</th>
+                            <th scope="col">Dinner</th>
+                        </tr>
                     </thead>
                     <tbody id="tabledata">
-                     
-                    </tbody>
-                  </table>
-        </div>
-    </form>
 
+                    </tbody>
+                </table>
+
+            </form>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -50,9 +53,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        <script src="../scripts/allstudents.js"></script>
-        <script src="../scripts/logout.js"></script>
-</body>
+    <script src="../scripts/allstudents.js"></script>
+    <script src="../scripts/logout.js"></script>
 </body>
 
 </html>

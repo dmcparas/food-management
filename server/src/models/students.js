@@ -23,7 +23,7 @@ module.exports.StudentSignUpValidate = joi.object().keys({
     .max(30)
     .required(),
     password: joi.string()
-    .regex(/^[a-zA-Z0-9]{3,30}$/)
+    .regex(/^[a-zA-Z0-9]{8,30}$/)
     .required(),
     name: joi.string()
     .regex(/^[a-zA-Z0-9 ]{3,30}$/)
@@ -41,6 +41,6 @@ module.exports.StudentLoginValidate = joi.object().keys({
     .max(30)
     .required(),
     password: joi.string()
-    .regex(/^[a-zA-Z0-9]{3,30}$/)
+    .regex(/^[a-zA-Z0-9]{8,30}$/)
     .required()
 })

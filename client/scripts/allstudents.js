@@ -1,6 +1,9 @@
 document.getElementById("student-food").onsubmit = function(evt){
     var xhttp = new XMLHttpRequest();
     var getdate = document.getElementById("data-date").value;
+    if(getdate == ""){
+        alert("Please select a date");
+    }
     var data = {"date":getdate};
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {

@@ -13,6 +13,9 @@ document.getElementById("food-count").onsubmit = function(evt){
         else {
             if(this.responseText != "" && this.readyState == 4)
             alert("No details found for selected date");
+            document.getElementById("breakfast").value = "";
+            document.getElementById("lunch").value = "";
+            document.getElementById("dinner").value = "";
             evt.preventDefault();
         }
     };
