@@ -1,0 +1,49 @@
+#home-body {
+        background: url("assets/foodImage.jpg") no-repeat center center fixed;
+        background-repeat:no-repeat;
+       background-size:cover;-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+       width: auto;
+       display: flex;
+       height: 600px;
+       justify-content:center;
+       align-items: center;
+       opacity: 0.9;
+}
+.home-page-login{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+}
+.btn{
+        margin: 5px;
+        width: auto;
+        border: 2px solid black !important;
+}
+#main-logo{
+        height: 200px; 
+        width: 200px; 
+        position: absolute; 
+        left: 20px; 
+        top: 20px;
+}
+
+#log-out,#home-button
+{
+        position: absolute;
+        right: 50px;
+        top:20px;
+}
+#menu-image{
+        height: 350px;
+        width: auto;
+}
+
+#food-options{
+        display: flex;
+        justify-content: space-between;
+}
+input{
+        text-align: center;
+}
